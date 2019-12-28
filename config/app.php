@@ -178,7 +178,10 @@ return [
         Spatie\Permission\PermissionServiceProvider::class,
         Mews\Captcha\CaptchaServiceProvider::class,
         Overtrue\LaravelWeChat\ServiceProvider::class,
-
+		// laravel Debug Tool
+		Barryvdh\Debugbar\ServiceProvider::class,
+		// ide helper
+		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*

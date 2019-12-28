@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password')->comment('密码');
             $table->rememberToken();
             $table->string('api_token', 80)->unique()->nullable()->default(null);
+            $table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `users` comment '用户表'");

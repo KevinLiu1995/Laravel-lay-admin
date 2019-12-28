@@ -17,6 +17,9 @@
 | 用户登录、退出、更改密码
 |--------------------------------------------------------------------------
 */
+
+use Illuminate\Support\Facades\Route;
+
 Route::group(['namespace'=>'Admin','prefix'=>'admin/user'],function (){
     //登录
     Route::get('login','UserController@showLoginForm')->name('admin.user.loginForm');
@@ -50,22 +53,26 @@ Route::group(['namespace'=>'Admin','prefix'=>'admin','middleware'=>['auth','perm
 
     //用户管理
     Route::group(['middleware'=>['permission:system.user']],function (){
-        Route::get('user','UserController@index')->name('admin.user');
-        Route::get('user/data','UserController@data')->name('admin.user.data');
-        //添加
-        Route::get('user/create','UserController@create')->name('admin.user.create')->middleware('permission:system.user.create');
-        Route::post('user/store','UserController@store')->name('admin.user.store')->middleware('permission:system.user.create');
-        //编辑
-        Route::get('user/{id}/edit','UserController@edit')->name('admin.user.edit')->middleware('permission:system.user.edit');
-        Route::put('user/{id}/update','UserController@update')->name('admin.user.update')->middleware('permission:system.user.edit');
-        //删除
-        Route::delete('user/destroy','UserController@destroy')->name('admin.user.destroy')->middleware('permission:system.user.destroy');
-        //分配角色
-        Route::get('user/{id}/role','UserController@role')->name('admin.user.role')->middleware('permission:system.user.role');
-        Route::put('user/{id}/assignRole','UserController@assignRole')->name('admin.user.assignRole')->middleware('permission:system.user.role');
-        //分配权限
-        Route::get('user/{id}/permission','UserController@permission')->name('admin.user.permission')->middleware('permission:system.user.permission');
-        Route::put('user/{id}/assignPermission','UserController@assignPermission')->name('admin.user.assignPermission')->middleware('permission:system.user.permission');
+
+    	Route::prefix('user')->name('admin.')->group(function (){
+			Route::get('/','UserController@index')->name('user');
+			Route::get('/data','UserController@data')->name('user.data');
+			//添加
+			Route::get('/create','UserController@create')->name('user.create')->middleware('permission:system.user.create');
+			Route::post('/store','UserController@store')->name('user.store')->middleware('permission:system.user.create');
+			//编辑
+			Route::get('/{id}/edit','UserController@edit')->name('user.edit')->middleware('permission:system.user.edit');
+			Route::put('/{id}/update','UserController@update')->name('user.update')->middleware('permission:system.user.edit');
+			//删除
+			Route::delete('/destroy','UserController@destroy')->name('user.destroy')->middleware('permission:system.user.destroy');
+			//分配角色
+			Route::get('/{id}/role','UserController@role')->name('user.role')->middleware('permission:system.user.role');
+			Route::put('/{id}/assignRole','UserController@assignRole')->name('user.assignRole')->middleware('permission:system.user.role');
+			//分配权限
+			Route::get('/{id}/permission','UserController@permission')->name('user.permission')->middleware('permission:system.user.permission');
+			Route::put('/{id}/assignPermission','UserController@assignPermission')->name('user.assignPermission')->middleware('permission:system.user.permission');
+		});
+
     });
 
     //角色管理
