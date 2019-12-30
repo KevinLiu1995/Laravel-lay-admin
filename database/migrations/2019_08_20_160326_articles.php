@@ -23,6 +23,7 @@ class Articles extends Migration
             $table->integer('click')->default(0)->comment('点击量');
             $table->string('thumb',200)->nullable()->comment('缩略图');
             $table->string('link')->nullable()->comment('外链');
+			$table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `articles` comment '资讯表'");

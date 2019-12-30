@@ -20,6 +20,7 @@ class LoginLog extends Migration
             $table->string('method')->comment('请求方式');
             $table->string('user_agent')->comment('UserAgent');
             $table->string('remark')->nullable()->comment('备注');
+			$table->softDeletes();
             $table->timestamps();
         });
     }

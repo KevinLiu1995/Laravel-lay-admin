@@ -78,7 +78,7 @@
 <div class="layui-form-item">
     <label for="" class="layui-form-label">内容</label>
     <div class="layui-input-block">
-        <script id="container" name="content" type="text/plain" style="width: 98%">
+        <script id="container" name="content" type="text/plain" style="width: 100%">
             {!! $article->content??old('content') !!}
         </script>
     </div>

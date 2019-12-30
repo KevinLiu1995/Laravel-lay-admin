@@ -17,6 +17,7 @@ class ArticleTag extends Migration
             $table->bigIncrements('id');
             $table->integer('article_id')->comment('资讯ID');
             $table->integer('tag_id')->comment('标签ID');
+			$table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `article_tag` comment '资讯-标签中间表'");

@@ -23,6 +23,7 @@ class Configuration extends Migration
             $table->text('content')->nullable()->comment('配置项类型的内容');
             $table->string('tips')->nullable()->comment('输入提示');
             $table->tinyInteger('sort')->default(10)->comment('排序');
+			$table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `configuration` comment '配置项表'");

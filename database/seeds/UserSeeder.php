@@ -25,10 +25,10 @@ class UserSeeder extends Seeder
         //用户
         $user = \App\Models\User::create([
             'username' => 'root',
-            'phone' => '18908221080',
+            'phone' => '18612345678',
             'nickname' => '超级管理员',
-            'email' => 'root@dgg.net',
-            'password' => '123456',
+            'email' => '863129201@qq.com',
+            'password' => 'root',
             'api_token' => hash('sha256', Str::random(60)),
         ]);
 

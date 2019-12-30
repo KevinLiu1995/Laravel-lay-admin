@@ -18,6 +18,7 @@ class Categories extends Migration
             $table->string('name',100)->comment('名称');
             $table->integer('parent_id')->default(0)->comment('父级ID');
             $table->integer('sort')->default(10)->comment('排序');
+			$table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `categories` comment '分类表'");

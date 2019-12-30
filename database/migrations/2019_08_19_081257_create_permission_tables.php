@@ -26,6 +26,7 @@ class CreatePermissionTables extends Migration
             $table->integer('parent_id')->default(0);
             $table->integer('sort')->default(0)->comment('排序');
             $table->integer('type')->default(1)->comment('类型：1按钮，2菜单');
+			$table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `".$tableNames['permissions']."` comment '权限表'");
@@ -35,6 +36,7 @@ class CreatePermissionTables extends Migration
             $table->string('name');
             $table->string('guard_name');
             $table->string('display_name');
+			$table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `".$tableNames['roles']."` comment '角色表'");

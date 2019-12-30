@@ -17,6 +17,7 @@ class ConfigGroup extends Migration
             $table->bigIncrements('id');
             $table->string('name')->comment('名称');
             $table->tinyInteger('sort')->default(10)->comment('排序');
+			$table->softDeletes();
             $table->timestamps();
         });
         \DB::statement("ALTER TABLE `config_group` comment '配置组表'");

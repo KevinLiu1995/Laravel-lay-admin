@@ -1,11 +1,13 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\URL;
 
 class Permission extends \Spatie\Permission\Models\Permission
 {
+	use SoftDeletes;
 
     protected $appends = ['type_name'];
 

@@ -19,6 +19,7 @@ class OperateLog extends Migration
             $table->string('uri')->comment('操作地址');
             $table->string('parameter')->nullable()->comment('参数');
             $table->string('method')->comment('请求方式：GET、POST、PUT、DELETE、HEAD');
+			$table->softDeletes();
             $table->timestamps();
         });
     }
