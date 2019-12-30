@@ -15,8 +15,8 @@
 <div class="layadmin-user-login layadmin-user-display-show">
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
-            <h2>后台管理</h2>
-            <p>后台管理系统，仅内部使用</p>
+            <h2>{{env('APP_NAME')}}后台管理系统</h2>
+{{--            <p>后台管理系统，仅内部使用</p>--}}
         </div>
         <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
             <form action="{{route('admin.user.login')}}" method="post" class="layui-form">
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="*">登 入</button>
+                    <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="*">登 录</button>
                 </div>
             </form>
 
@@ -57,7 +57,7 @@
     </div>
 
     <div class="layui-trans layadmin-user-login-footer">
-        <p>© 2016 <a>nicaicai.top</a></p>
+        <p>© {{ date('Y') }}</p>
     </div>
 </div>
 

@@ -6,6 +6,8 @@ use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -29,7 +31,7 @@ class ArticleController extends Controller
     /**
      * 资讯数据接口
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function data(Request $request)
     {
@@ -66,7 +68,7 @@ class ArticleController extends Controller
     /**
      * 添加资讯
      * @param ArticleRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(ArticleRequest $request)
     {
@@ -113,7 +115,7 @@ class ArticleController extends Controller
      * 更新资讯
      * @param ArticleRequest $request
      * @param $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(ArticleRequest $request, $id)
     {
@@ -128,6 +130,11 @@ class ArticleController extends Controller
         }
     }
 
+	/**
+	 * @param Request $request
+	 * @return JsonResponse
+	 * @throws \Exception
+	 */
     public function destroy(Request $request)
     {
         $ids = $request->get('ids');
