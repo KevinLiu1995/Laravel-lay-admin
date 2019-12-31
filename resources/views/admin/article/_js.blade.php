@@ -30,7 +30,7 @@
 	                    $("#progress_bar").removeClass("layui-bg-blue")
 	                    $("#progress_bar").addClass("layui-bg-green")
 
-	                    $(elem).parent('.layui-upload').find('.layui-upload-box').html('<li><img src="'+res.url+'" /><p>上传成功</p></li>');
+	                    $(elem).parent('.layui-upload').find('.layui-upload-box').html('<li><img src="'+res.url+'" class="img"/><p>上传成功</p></li>');
 	                    $(elem).parent('.layui-upload').find('.layui-upload-input').val(res.url);
                     }else {
                     	//更改进度条颜色

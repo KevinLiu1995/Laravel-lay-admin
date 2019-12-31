@@ -100,7 +100,7 @@
                                 ids: ids
                             }, function (res) {
                                 layer.close(load);
-                                if (res.code == 0) {
+                                if (res.code ==  0) {
                                     layer.msg(res.msg, {icon: 1}, function () {
                                         dataTable.reload({page: {curr: 1}});
                                     })

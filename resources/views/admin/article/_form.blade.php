@@ -71,7 +71,7 @@
             <div class="layui-upload-list" >
                 <ul class="layui-upload-box layui-clear">
                     @if(isset($article->thumb))
-                        <li><img src="{{ $article->thumb }}" /><p>上传成功</p></li>
+                        <li><img src="{{ $article->thumb }}" class="img" /><p>上传成功</p></li>
                     @endif
                 </ul>
                 <input type="hidden" name="thumb" class="layui-upload-input" value="{{ $article->thumb??'' }}">

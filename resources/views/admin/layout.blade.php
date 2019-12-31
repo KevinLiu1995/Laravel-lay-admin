@@ -155,6 +155,10 @@
 <script>
     layui.config({
         base: '/static/admin/layuiadmin/' //静态资源所在路径
+        @if(env('APP_ENV') === 'local') // 本地开发环境时生效
+        ,version: true
+        ,debug: true
+        @endif
     }).extend({
         index: 'lib/index' //主入口模块
     }).use('index');

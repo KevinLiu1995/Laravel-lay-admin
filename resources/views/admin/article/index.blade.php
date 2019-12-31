@@ -51,9 +51,9 @@
             </script>
             <script type="text/html" id="thumb">
                 @{{#  if(d.thumb){ }}
-                <a href="@{{d.thumb}}" target="_blank" title="点击查看">
-                    <img src="@{{d.thumb}}" alt="" width="28" height="28">
-                </a>
+{{--                <a href="@{{d.thumb}}" target="_blank" title="点击查看">--}}
+                    <img src="@{{d.thumb}}" class="img" alt="" width="28" height="28">
+<!--                </a>-->
                 @{{#  } }}
             </script>
             <script type="text/html" id="tags">
@@ -72,6 +72,7 @@
     @can('information.article')
         <script>
             layui.use(['layer', 'table', 'form'], function () {
+                console.log(layui.device())
                 var $ = layui.jquery;
                 var layer = layui.layer;
                 var form = layui.form;

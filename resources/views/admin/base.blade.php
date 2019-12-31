@@ -29,6 +29,10 @@
 
     layui.config({
         base: '/static/admin/layuiadmin/' //静态资源所在路径
+        @if(env('APP_ENV') === 'local') // 本地开发环境时生效
+        ,version: true
+        ,debug: true
+        @endif
     }).extend({
         index: 'lib/index' //主入口模块
     }).use(['layer'],function () {
@@ -58,6 +62,11 @@
         @if(session('error'))
         layer.msg("{{session('error')}}",{icon:2});
         @endif
+
+        // 全局img预览，查找class为 'img' 的标签
+        $("body").on("click", ".img", function (e) {
+            layer.photos({photos: {"data": [{"src": e.target.src}]}});
+        });
 
     });
 </script>

@@ -19,7 +19,7 @@ class Article extends Base
     //文章所属分类
     public function category()
     {
-        return $this->belongsTo('App\Models\Category')->withDefault(['name'=>'无分类']);
+        return $this->belongsTo('App\Models\Category')->withDefault(['name'=>'暂无分类']);
     }
 
     //与标签多对多关联
