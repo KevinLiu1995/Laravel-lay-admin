@@ -22,10 +22,10 @@
                         <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
                     @endcan
                     @can('system.user.role')
-                        <a class="layui-btn layui-btn-sm" lay-event="role">角色</a>
+                        <a class="layui-btn layui-btn-sm layui-btn-warm" lay-event="role">角色</a>
                     @endcan
                     @can('system.user.permission')
-                        <a class="layui-btn layui-btn-sm" lay-event="permission">权限</a>
+                        <a class="layui-btn layui-btn-sm layui-btn-normal" lay-event="permission">权限</a>
                     @endcan
                     @can('system.user.destroy')
                         <a class="layui-btn layui-btn-danger layui-btn-sm " lay-event="del">删除</a>

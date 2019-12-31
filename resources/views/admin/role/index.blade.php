@@ -20,7 +20,7 @@
                         <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
                     @endcan
                     @can('system.role.permission')
-                        <a class="layui-btn layui-btn-sm" lay-event="permission">权限</a>
+                        <a class="layui-btn layui-btn-normal layui-btn-sm" lay-event="permission">权限</a>
                     @endcan
                     @can('system.role.destroy')
                         <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
@@ -52,7 +52,7 @@
                         , {field: 'display_name', title: '显示名称'}
                         , {field: 'created_at', title: '创建时间'}
                         , {field: 'updated_at', title: '更新时间'}
-                        , {fixed: 'right', width: 260, align: 'center', toolbar: '#options'}
+                        , {fixed: 'right', width: 260,title: '操作', align: 'center', toolbar: '#options'}
                     ]]
                 });
 
@@ -69,7 +69,7 @@
                                 ids: [data.id]
                             }, function (res) {
                                 layer.close(load);
-                                if (res.code == 0) {
+                                if (res.code === 0) {
                                     layer.msg(res.msg, {icon: 1}, function () {
                                         obj.del();
                                     })

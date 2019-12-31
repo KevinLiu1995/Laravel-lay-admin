@@ -20,7 +20,6 @@
         </select>
     </div>
 </div>
-
 <div class="layui-form-item">
     <label for="" class="layui-form-label">标签</label>
     <div class="layui-input-block">
@@ -57,12 +56,18 @@
         <input type="number" name="click" value="{{$article->click??mt_rand(100,500)}}" class="layui-input" >
     </div>
 </div>
-
 <div class="layui-form-item">
     <label for="" class="layui-form-label">缩略图</label>
     <div class="layui-input-block">
         <div class="layui-upload">
             <button type="button" class="layui-btn layui-btn-sm uploadPic"><i class="layui-icon">&#xe67c;</i>图片上传</button>
+            <div class="layui-progress" style="margin-top: 20px;" lay-filter="progress" lay-showPercent="true">
+                @if(isset($article->thumb))
+                    <div id="progress_bar" class="layui-progress-bar layui-bg-green" lay-percent="100%"></div>
+                @else
+                    <div id="progress_bar" class="layui-progress-bar layui-bg-red" lay-percent="0%"></div>
+                @endif
+            </div>
             <div class="layui-upload-list" >
                 <ul class="layui-upload-box layui-clear">
                     @if(isset($article->thumb))
