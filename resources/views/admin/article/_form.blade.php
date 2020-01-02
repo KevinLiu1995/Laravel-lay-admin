@@ -60,7 +60,7 @@
     <label for="" class="layui-form-label">缩略图</label>
     <div class="layui-input-block">
         <div class="layui-upload">
-            <button type="button" class="layui-btn layui-btn-sm uploadPic"><i class="layui-icon">&#xe67c;</i>图片上传</button>
+            <button type="button" class="layui-btn layui-btn-sm uploadPic"><i class="layui-icon">&#xe67c;</i>点击上传</button><span class="layui-word-aux">支持 jpg/png/gif/bmp/jpeg 格式的图片</span>
             <div class="layui-progress" style="margin-top: 20px;" lay-filter="progress" lay-showPercent="true">
                 @if(isset($article->thumb))
                     <div id="progress_bar" class="layui-progress-bar layui-bg-green" lay-percent="100%"></div>
@@ -77,6 +77,22 @@
                 <input type="hidden" name="thumb" class="layui-upload-input" value="{{ $article->thumb??'' }}">
             </div>
         </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label for="" class="layui-form-label">上传组图</label>
+    <div class="layui-upload">
+        <button type="button" class="layui-btn layui-btn-sm" id="uploadMultiplePic"><i class="layui-icon">&#xe67c;</i>多图选择</button><span class="layui-word-aux">支持 jpg/png/gif/bmp/jpeg 格式的图片,最多 4 张</span>
+        <button type="button" class="layui-btn layui-btn-sm layui-bg-blue" id="imgBeginUpload">开始上传</button>
+        <div class="layui-input-block layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+            预览图：
+            <div class="layui-upload-list">
+                <ul class="layui-upload-box layui-clear" id="multiple-pic-preview"></ul>
+            </div>
+        </div>
+{{--        <input type="hidden" name="images" class="layui-upload-input" value="{{ $article->images??'' }}">--}}
+{{--        <input type="hidden" name="images[]" class="layui-upload-input" value="">--}}
     </div>
 </div>
 

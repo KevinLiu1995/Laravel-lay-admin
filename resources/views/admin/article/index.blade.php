@@ -4,11 +4,11 @@
     <div class="layui-card">
         <div class="layui-card-header layuiadmin-card-header-auto">
             <div class="layui-btn-group ">
-                @can('information.article.destroy')
-                    <button class="layui-btn layui-btn-sm layui-btn-danger" id="listDelete">删 除</button>
-                @endcan
                 @can('information.article.create')
                     <a class="layui-btn layui-btn-sm" href="{{route('admin.article.create')}}">添 加</a>
+                @endcan
+                @can('information.article.destroy')
+                    <button class="layui-btn layui-btn-sm layui-btn-danger" id="listDelete">删 除</button>
                 @endcan
             </div>
             <div class="layui-form">
@@ -72,7 +72,7 @@
     @can('information.article')
         <script>
             layui.use(['layer', 'table', 'form'], function () {
-                console.log(layui.device())
+                // console.log(layui.device())
                 var $ = layui.jquery;
                 var layer = layui.layer;
                 var form = layui.form;

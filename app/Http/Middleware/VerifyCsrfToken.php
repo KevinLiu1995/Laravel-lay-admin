@@ -19,6 +19,7 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        //排出wechat路由的 csrf检测
+		'wechat',
     ];
 }
