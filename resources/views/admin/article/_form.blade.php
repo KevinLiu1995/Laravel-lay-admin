@@ -83,8 +83,8 @@
 <div class="layui-form-item">
     <label for="" class="layui-form-label">上传组图</label>
     <div class="layui-upload">
-        <button type="button" class="layui-btn layui-btn-sm" id="uploadMultiplePic"><i class="layui-icon">&#xe67c;</i>多图选择</button><span class="layui-word-aux">支持 jpg/png/gif/bmp/jpeg 格式的图片,最多 4 张</span>
-        <button type="button" class="layui-btn layui-btn-sm layui-bg-blue" id="imgBeginUpload">开始上传</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-bg-blue" id="uploadMultiplePic">多图选择</button><span class="layui-word-aux">支持 jpg/png/gif/bmp/jpeg 格式的图片,最多 4 张</span>
+        <button type="button" class="layui-btn layui-btn-sm" id="imgBeginUpload"><i class="layui-icon">&#xe67c;</i>开始上传</button>
         <div class="layui-input-block layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
             预览图：
             <div class="layui-upload-list">

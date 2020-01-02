@@ -16,10 +16,11 @@
 					element.progress('progress', '0%');
 					// layer.load(); //上传loading
 				}
-				, progress: function (n) {
-					var percent = n + '%';//获取进度百分比
-					// console.log(n)
-					element.progress('progress', percent); //配合 layui 进度条元素使用
+				, xhr: function (index, e) {
+					var percent = e.loaded / e.total;//计算百分比
+					percent = parseFloat(percent.toFixed(2));
+					element.progress('progress', percent * 100 + '%');
+					//element.progress('progress', percent); //配合 layui 进度条元素使用
 				}
 				, done: function (res) {
 					if (res.code === 0) {
@@ -62,20 +63,27 @@
 				, url: '{{ route("api.upload") }}'
 				, multiple: true
 				, data: {"_token": "{{ csrf_token() }}"}
-				, accept: 'images' // 上传文件类型 images（图片）、file（所有文件）、video（视频）、audio（音频)
+				, accept: 'file' // 上传文件类型 images（图片）、file（所有文件）、video（视频）、audio（音频)
 				// , number: 4 // 上传最大数量
 				, auto: false // 不自动上传
 				, bindAction: '#imgBeginUpload'
 				, before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
 					// console.log('上传前回掉', obj)
 					// $('#multiple-pic-preview').empty()
-				}
-				, progress: function (n) {
-					console.log(n)
-					var percent = n + '%';//获取进度百分比
-					layer.load(2)
-					// console.log(n)
-					// element.progress('images-progress-' + index + '', percent); //配合 layui 进度条元素使用
+				},
+				// , progress: function (n) {
+				// 	console.log(n)
+				// 	var percent = n + '%';//获取进度百分比
+				// 	layer.load(2)
+				// 	console.log(index)
+				// 	// element.progress('images-progress-' + index + '', percent); //配合 layui 进度条元素使用
+				// },
+			    // 魔改版进度提示，可以实现多个progress显示进度条
+				xhr: function (index, e) {
+					var percent = e.loaded / e.total;//计算百分比
+					percent = parseFloat(percent.toFixed(2));
+					element.progress('progress-' + index + '', percent * 100 + '%');
+					// console.log(index + "-----" + percent);
 				}
 				, choose: function (obj) {
 					//预读本地文件示例，不支持ie8
@@ -91,7 +99,7 @@
 							return false;
 						}
 						//$('#multiple-pic-preview').append('<li><img src="' + result + '"class="layui-upload-img img" style="height: auto;width: 100%;"><p>等待上传</p> <div class="layui-progress" style="margin-top: 20px;" lay-filter="progress" lay-showPercent="true"><div class="layui-progress-bar layui-bg-green"lay-percent="100%"></div></div></li>')
-						$('#multiple-pic-preview').append('<li id="images-' + index + '"><img src="' + result + '" alt="' + file.name + '"class="layui-upload-img img" style="height: auto;width: 100%;"><p id="images-p-' + index + '">等待上传<button class="test-delete layui-bg-red">删除</button></p></li>')
+						$('#multiple-pic-preview').append('<li id="images-' + index + '"><img src="' + result + '" alt="' + file.name + '"class="layui-upload-img img" style="height: auto;width: 100%;"><p id="images-p-' + index + '">等待上传<button class="test-delete layui-bg-red">删除</button></p><div class="layui-progress" style="margin-top: 22px;z-index: 999" lay-filter="progress-'+index+'" lay-showPercent="true"><div class="layui-progress-bar layui-bg-green"lay-percent="100%"></div></div></li>')
 						// console.log(files)
 						let del_btn = '#images-' + index
 						//删除文件的监听
@@ -123,11 +131,11 @@
 					} else {
 						layer.msg(res.msg, {icon: 2})
 					}
-					layer.closeAll()
+					// layer.closeAll()
 				}
 				, error: function (index) {
 					console.log(index)
-					layer.closeAll()
+					// layer.closeAll()
 				}
 			});
 		})
