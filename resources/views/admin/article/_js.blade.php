@@ -83,7 +83,7 @@
 					var percent = e.loaded / e.total;//计算百分比
 					percent = parseFloat(percent.toFixed(2));
 					element.progress('progress-' + index + '', percent * 100 + '%');
-					// console.log(index + "-----" + percent);
+					console.log(index + "-----" + percent * 100 + '%');
 				}
 				, choose: function (obj) {
 					//预读本地文件示例，不支持ie8

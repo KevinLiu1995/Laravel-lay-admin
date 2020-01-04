@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class ApiController extends Controller
@@ -11,13 +12,22 @@ class ApiController extends Controller
     //图片上传
     public function upload(Request $request)
     {
+		//返回信息json
+		$data = ['code'=>1, 'msg'=>'上传失败', 'data'=>''];
+		$file = $request->file('file');
+
         //上传文件最大大小,单位M
-        $maxSize = 10;
+        $maxSize = 1000;
         //支持的上传图片类型
-        $allowed_extensions = ['png', 'jpg', 'gif'];
-        //返回信息json
-        $data = ['code'=>1, 'msg'=>'上传失败', 'data'=>''];
-        $file = $request->file('file');
+        $allowed_extensions = ['png', 'jpg', 'gif' ,'jpeg'];
+        // 上传文件夹名
+		$folder_name = "uploads/images/" . date("Ym/d", time());
+		// 文件具体存储的物理路径，`public_path()` 获取的是 `public` 文件夹的物理路径。
+		$upload_path = public_path() . '/' . $folder_name;
+		// 文件后缀
+		$extension = strtolower($file->getClientOriginalExtension()) ?: 'png';
+		// 拼接文件名
+		$filename = time() . '_' . Str::random(10) . '.' . $extension;
 
         //检查文件是否上传完成
         if ($file->isValid()){
@@ -36,19 +46,15 @@ class ApiController extends Controller
             $data['msg'] = $file->getErrorMessage();
             return response()->json($data);
         }
-        $newFile = date('Y-m-d'). '_' .time(). '_' .uniqid('', true). '.' .$file->getClientOriginalExtension();
-        $disk = Storage::disk('uploads');
-        $res = $disk->put($newFile,file_get_contents($file->getRealPath()));
-        if($res){
-            $data = [
-                'code'  => 0,
-                'msg'   => '上传成功',
-                'data'  => $newFile,
-                'url'   => '/uploads/local/'.$newFile,
-            ];
-        }else{
-            $data['data'] = $file->getErrorMessage();
-        }
-        return response()->json($data);
+
+		// 将图片移动到我们的目标存储路径中
+		$file->move($upload_path, $filename);
+
+		return [
+			'code'  => 0,
+			'msg'   => '上传成功',
+			'data'  => $filename,
+			'url' => config('app.url') . "/$folder_name/$filename"
+		];
     }
 }
