@@ -21,7 +21,7 @@ class ApiController extends Controller
         //支持的上传图片类型
         $allowed_extensions = ['png', 'jpg', 'gif' ,'jpeg'];
         // 上传文件夹名
-		$folder_name = "uploads/images/" . date("Ym/d", time());
+		$folder_name = 'uploads/images/' . date('Ym/d', time());
 		// 文件具体存储的物理路径，`public_path()` 获取的是 `public` 文件夹的物理路径。
 		$upload_path = public_path() . '/' . $folder_name;
 		// 文件后缀
