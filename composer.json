@@ -17,6 +17,7 @@
         "mews/captcha": "^3.0",
         "orangehill/iseed": "^2.6",
         "overtrue/laravel-wechat": "^5.0",
+        "qiniu/php-sdk": "^7.2",
         "spatie/laravel-permission": "^3.0",
         "tymon/jwt-auth": "1.0.0-rc.5"
     },
