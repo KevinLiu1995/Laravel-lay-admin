@@ -22,7 +22,7 @@ class ApiController extends Controller
 		$file = $request->file('file');
 
 		//上传文件最大大小,单位M
-		$maxSize = 1000;
+		$maxSize = 20;
 		// 文件质量0～1，1代表不压缩
 		$quality = 1;
 		//支持的上传图片类型

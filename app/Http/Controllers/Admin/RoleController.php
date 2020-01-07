@@ -34,7 +34,7 @@ class RoleController extends Controller
         $res = Role::paginate($request->get('limit', 30));
         $data = [
             'code' => 0,
-            'msg' => '正在请求中...',
+            'msg' => 'success',
             'count' => $res->total(),
             'data' => $res->items()
         ];

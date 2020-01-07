@@ -32,7 +32,7 @@ class PermissionController extends Controller
         $res = Permission::get();
         $data = [
             'code' => 0,
-            'msg' => '正在请求中...',
+            'msg' => 'success',
             'count' => $res->count(),
             'data' => $res
         ];
