@@ -19,3 +19,4 @@ use Illuminate\Http\Request;
 
 //文件上传接口
 Route::post('upload', 'ApiController@upload')->name('api.upload');
+
