@@ -7,9 +7,8 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-// 引入鉴权类
+use Intervention\Image\Facades\Image;
 use Qiniu\Auth;
-// 引入上传类
 use Qiniu\Storage\UploadManager;
 
 class ApiController extends Controller
@@ -24,6 +23,8 @@ class ApiController extends Controller
 
 		//上传文件最大大小,单位M
 		$maxSize = 1000;
+		// 文件质量0～1，1代表不压缩
+		$quality = 1;
 		//支持的上传图片类型
 		$allowed_extensions = ['png', 'jpg', 'gif', 'jpeg'];
 		// 上传文件夹名
@@ -48,13 +49,24 @@ class ApiController extends Controller
 				$data['msg'] = '图片大小限制' . $maxSize . 'M';
 				return response()->json($data);
 			}
+			// 动态生成图片质量
+			if ($file->getSize() > 10*1024*1024){
+				$quality = 0.3;
+			}else if ($file->getSize() > 5*1024*1024){
+				$quality  = 0.5;
+			}else if ($file->getSize() > 8*1024*1024){
+				$quality = 0.8;
+			}else{
+				$quality = 1;
+			}
 		} else {
 			$data['msg'] = $file->getErrorMessage();
 			return response()->json($data);
 		}
 
 
-		if (env('QINIU_ENABLE', false)) {
+
+		if (env('UPLOAD_DRIVER','local') === 'qiniu') {
 			$res = self::qiniuUpload($file,$filename);
 			if ($res){
 				$data = [
@@ -66,7 +78,14 @@ class ApiController extends Controller
 			}
 		} else {
 			// 本地上传，将图片移动目标存储路径中
-			$res = $file->move($upload_path, $filename);
+			$file = Image::make($file);
+			$file->encode($extension,$quality);
+			if (!file_exists($upload_path)){
+				if (!mkdir($upload_path, 0777) && !is_dir($upload_path)) {
+					$data = ['code' => 1, 'msg' => '上传失败,文件夹创建失败', 'data' => ''];
+				}
+			}
+			$res = $file->save($upload_path.'/'.$filename);
 			if ($res){
 				$data = [
 					'code' => 0,

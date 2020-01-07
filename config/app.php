@@ -182,6 +182,8 @@ return [
 		Barryvdh\Debugbar\ServiceProvider::class,
 		// ide helper
 		Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+		// 图片处理
+		Intervention\Image\ImageServiceProvider::class,
     ],
 
     /*
@@ -235,6 +237,8 @@ return [
 
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'EasyWeChat' => Overtrue\LaravelWeChat\Facade::class,
+		 // 图片处理
+		'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 
