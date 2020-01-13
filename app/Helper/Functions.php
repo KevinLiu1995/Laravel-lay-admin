@@ -7,8 +7,6 @@
  */
 
 namespace App\Helper;
-
-
 use Illuminate\Contracts\Pagination\Paginator;
 
 //对返回给前端前对数据进行格式处理
